@@ -12,6 +12,13 @@
 
 #include "fractol.h"
 
+void	end(void)
+{
+	ft_putstr_fd("Usage: ./fractol mandelbrot\n", 2);
+	ft_putstr_fd("       ./fractol julia <real cx> <imaginary cy>\n", 2);
+	exit(-1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_mlx	mlx;

@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoqdeh <aoqdeh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: chi <chi@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:39:16 by aoqdeh            #+#    #+#             */
-/*   Updated: 2026/02/01 19:54:44 by aoqdeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 00:43:00 by chi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	end(void)
-{
-	ft_putstr_fd("Usage: ./fractol mandelbrot\n", 2);
-	ft_putstr_fd("       ./fractol julia <real cx> <imaginary cy>\n", 2);
-	exit(-1);
-}
 
 int	is_double(char *str)
 {
@@ -37,6 +30,24 @@ int	is_double(char *str)
 	if (i < ft_strlen(str))
 		return (0);
 	return (1);
+}
+
+int	get_sign(char *str)
+{
+	int	sign;
+	int	i;
+
+	i = 0;
+	sign = 1;
+	while (str[i] == ' ' || str[i] == 't')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	return (sign);
 }
 
 double	convert_double(char *str)
@@ -59,7 +70,9 @@ double	convert_double(char *str)
 	perc = ft_atoi(&str[i]);
 	while (ft_isdigit(str[i++]) == 1)
 		dev = dev * 10;
-	return (((double)ft_atoi(str) + perc / (double)dev));
+	if (get_sign(str) == -1 && ft_atoi(str) == 0)
+		return (((double)ft_atoi(str) + perc / (double)dev) * get_sign(str));
+	return (((double)ft_atoi(str) + perc / (double)dev * get_sign(str)));
 }
 
 void	init_julia(char **argv, t_mlx *fract)

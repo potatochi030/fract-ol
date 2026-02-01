@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoqdeh <aoqdeh@student.42.fr>              +#+  +:+       +#+        */
+/*   By: chi <chi@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:36:08 by aoqdeh            #+#    #+#             */
-/*   Updated: 2026/02/01 19:43:56 by aoqdeh           ###   ########.fr       */
+/*   Updated: 2026/02/02 00:43:17 by chi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	init_vals(t_mlx *mlx);
 int		close_mlx(t_mlx *mlx);
 int		handle_esc(int keycode, t_mlx *mlx);
 int		handle_zoom(int code, int x, int y, t_mlx *mlx);
+int		get_sign(char *str);
 double	get_actual_x(int x, t_mlx *fract);
 double	get_actual_y(int y, t_mlx *fract);
 
