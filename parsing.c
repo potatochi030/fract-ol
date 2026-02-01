@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aoqdeh <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: aoqdeh <aoqdeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:39:16 by aoqdeh            #+#    #+#             */
-/*   Updated: 2026/02/01 19:39:17 by aoqdeh           ###   ########.fr       */
+/*   Updated: 2026/02/01 19:54:44 by aoqdeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	decide_fract(int argc, char **argv, t_mlx *fract)
 		if (argc != 4)
 		{
 			ft_putendl_fd("Wrong Number of Variables", 2);
-			ft_putendl_fd("Example Points: () () ()", 1);
+			ft_putendl_fd("Example Points: (.28,.008) (-.79,.15)", 1);
 			exit(-1);
 		}
 		fract->type = julia;

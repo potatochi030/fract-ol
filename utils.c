@@ -6,7 +6,7 @@
 /*   By: aoqdeh <aoqdeh@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/01 19:39:24 by aoqdeh            #+#    #+#             */
-/*   Updated: 2026/02/01 19:44:51 by aoqdeh           ###   ########.fr       */
+/*   Updated: 2026/02/01 20:42:35 by aoqdeh           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ double	get_actual_y(int y, t_mlx *fract)
 
 void	init_vals(t_mlx *mlx)
 {
-	mlx->max_iter = 80;
+	mlx->max_iter = 250;
 	mlx->zoom = 200.0;
 	mlx->central_x = 0.0;
 	mlx->central_y = 0.0;
