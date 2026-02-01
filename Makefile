@@ -28,6 +28,7 @@ $(MLX):
 clean:
 	rm -rf $(OBJS)
 	make clean -C libft
+	make clean -C minilibx-linux
 
 fclean: clean
 	rm -rf $(NAME)
