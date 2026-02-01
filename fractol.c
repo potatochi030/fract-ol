@@ -6,29 +6,32 @@
 /*   By: chi <chi@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:36:53 by aoqdeh            #+#    #+#             */
-/*   Updated: 2026/01/29 08:02:36 by chi              ###   ########.fr       */
+/*   Updated: 2026/02/01 10:51:59 by chi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minilibx-linux/mlx.h"
+
 #include "fractol.h"
 
 int     main(int argc, char **argv)
 {
-    t_mlx   mlx1;
-
-    read_input(argc, argv, mlx1);
-    mlx1.obj = mlx_init();
-    if (!mlx1.obj)
-        return (-1);
-    mlx1.win = mlx_new_window(mlx1.obj, WIDTH, HEIGHT, "fractol");
-    if (!mlx1.win)
-        close_mlx(mlx1);
-    mlx1.image.img = mlx_new_image(mlx1.obj, WIDTH, HEIGHT);
-    if (!mlx1.image.img)
-        close_mlx(mlx1);
-    mlx1.image.addr = mlx_get_data_addr(mlx1.image.img, &mlx1.image.bpp, &mlx1.image.ll, &mlx1.image.endian);
+    t_mlx   mlx;
     
-        
-    mlx_loop(mlx1.obj);
+    init_vals(mlx);
+    decide_fract(argc, argv, mlx);
+    mlx.obj = mlx_init();
+    if (!mlx.obj)
+        return (-1);
+    mlx.win = mlx_new_window(mlx.obj, WIDTH, HEIGHT, "fractol");
+    if (!mlx.win)
+        close_mlx(&mlx);
+    mlx.img.image = mlx_new_image(mlx.obj, WIDTH, HEIGHT);
+    if (!mlx.img.image)
+        close_mlx(&mlx);
+    mlx.img.addr = mlx_get_data_addr(mlx.img.image, &mlx.img.bpp, &mlx.img.ll, &mlx.img.endian);
+    print_fractol(mlx);
+    mlx_key_hook(mlx.win, handle_esc, &mlx);
+    
+    mlx_hook(mlx.win, 17, 0, close_mlx, &mlx);
+    mlx_loop(mlx.obj);
 }

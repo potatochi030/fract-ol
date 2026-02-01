@@ -1,42 +1,58 @@
 #include "fractol.h"
 
-void    put_colored_pix(t_mlx fract, int x, int y, int color)
+int     get_color(int i, int max_i)
 {
-    char    *dst;
+    double  t;
+    int     r;
+    int     g;
+    int     b;
 
-    dst = fract.image.addr + (y * fract.image.ll + x * (fract.image.bpp / 8));
-    *(unsigned int*)dst = color;
+    if (i == max_i)
+        return (0x000000);
+    t = (double) i / max_i;
+    r = (int)(9 * (1 - t) * t * t * t * 255);
+	g = (int)(15 * (1 - t) * (1 - t) * t * t * 255);
+	b = (int)(8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255);
+    return ((r << 16) | (g << 8) | b);
 }
-int     map_x(int x, t_mlx fract)
+int     get_iteration(double zx, double zy, t_mlx fract)
 {
-    return (fract.min_re + (x / (double)WIDTH) * (fract.max_re - fract.min_re));
-}
-int     map_y(int y, t_mlx fract)
-{
-    return (fract.min_im + (y / (double)HEIGHT) * (fract.max_im - fract.min_im));
-}
+    double  tmp;
+    int     i;
 
+    i = 0;
+    while ((zx * zx) + (zy * zy) < 4 && i < fract.max_iter)
+    {
+        tmp  = zx * zx - zy * zy + fract.julia.re;
+        zy = 2 * zx * zy + fract.julia.im;
+        zx = tmp;
+        i++;
+    }
+    return (i);
+}
 void    put_pix(t_mlx fract, int x, int y)
 {
     double  cx;
     double  cy;
-    int     col;
-
+    int     i;
+    
     if (fract.type == mandelbrot)
     {
         cx = 0;
         cy = 0;
-        fract.julia_i = map_y(y, fract);
-        fract.julia_r = map_x(x, fract);
+        fract.julia.re = map_x(x, fract);
+        fract.julia.im = map_y(y, fract);
     }
     else
     {
-        cx = map_y(y, fract);
-        cy = map_x(x, fract);
+        cx = map_x(x, fract);
+        cy = map_y(y, fract);
     }
+    i = get_iteration(cx, cy, fract);
+    put_colored_pix(fract, x, y, get_color(i, fract.max_iter));
 }
 
-void    render_fractol(t_mlx mlx)
+void    print_fractol(t_mlx mlx)
 {
     int x;
     int y;
@@ -52,5 +68,5 @@ void    render_fractol(t_mlx mlx)
         }
         y++;
     }
-    mlx_put_image_to_window(mlx.obj, mlx.win, mlx.image.img, 0, 0);
+    mlx_put_image_to_window(mlx.obj, mlx.win, mlx.img.image, 0, 0);
 }

@@ -1,12 +1,12 @@
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux
+CFLAGS = -Wall -Wextra -Werror -Iminilibx-linux -Ilibft
 
-MLXF = -Lminilibx-linux -lmlx -lXext -lX11 -lm
+MLXF = -Lminilibx-linux -Llibft -lmlx -lXext -lX11 -lm 
 
 NAME = fractol
 
-SRCS = fractol.c
+SRCS = fractol.c fractals.c hooks.c parsing.c utils.c
 
 OBJS = $(SRCS:.c=.o)
 
@@ -16,8 +16,8 @@ MLX = minilibx-linux/libmlx.a
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MLXF) -o $(NAME)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(LIBFT) $(MLX) $(MLXF) $(OBJS) -o $(NAME)
 
 $(LIBFT):
 	make -C libft
