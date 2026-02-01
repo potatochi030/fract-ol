@@ -6,7 +6,7 @@
 /*   By: chi <chi@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:36:53 by aoqdeh            #+#    #+#             */
-/*   Updated: 2026/02/01 10:51:59 by chi              ###   ########.fr       */
+/*   Updated: 2026/02/01 11:45:05 by chi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int     main(int argc, char **argv)
     mlx.img.addr = mlx_get_data_addr(mlx.img.image, &mlx.img.bpp, &mlx.img.ll, &mlx.img.endian);
     print_fractol(mlx);
     mlx_key_hook(mlx.win, handle_esc, &mlx);
-    
+    mlx_mouse_hook(mlx.win, handle_esc, &mlx);
     mlx_hook(mlx.win, 17, 0, close_mlx, &mlx);
     mlx_loop(mlx.obj);
 }

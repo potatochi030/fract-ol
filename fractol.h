@@ -6,7 +6,7 @@
 /*   By: chi <chi@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/28 13:36:08 by aoqdeh            #+#    #+#             */
-/*   Updated: 2026/02/01 11:03:39 by chi              ###   ########.fr       */
+/*   Updated: 2026/02/01 11:45:09 by chi              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void    put_colored_pix(t_mlx fract, int x, int y, int color);
 void    init_vals(t_mlx mlx);
 int     close_mlx(t_mlx *mlx);
 int     handle_esc(int keycode, t_mlx *mlx);
+int     handle_zoom(int code, int x, int y, t_mlx *mlx);
 int     map_x(int x, t_mlx fract);
 int     map_y(int y, t_mlx fract);
 
