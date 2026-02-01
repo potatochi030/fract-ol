@@ -17,7 +17,7 @@ MLX = minilibx-linux/libmlx.a
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(MLX) $(OBJS)
-	$(CC) $(CFLAGS) $(LIBFT) $(MLX) $(MLXF) $(OBJS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLX) $(MLXF) -o $(NAME)
 
 $(LIBFT):
 	make -C libft
