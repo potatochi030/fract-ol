@@ -32,7 +32,7 @@ double	get_actual_y(int y, t_mlx *fract)
 {
 	double	aft_y;
 
-	aft_y = ((y - HEIGHT / 2.0) / fract->zoom) + fract->central_y;
+	aft_y = -((y - HEIGHT / 2.0) / fract->zoom) + fract->central_y;
 	return (aft_y);
 }
 
