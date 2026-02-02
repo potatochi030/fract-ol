@@ -29,10 +29,8 @@ int	main(int argc, char **argv)
 	if (!mlx.obj)
 		return (-1);
 	mlx.win = mlx_new_window(mlx.obj, WIDTH, HEIGHT, "fractol");
-	if (!mlx.win)
-		close_mlx(&mlx);
 	mlx.img.image = mlx_new_image(mlx.obj, WIDTH, HEIGHT);
-	if (!mlx.img.image)
+	if (!mlx.img.image || !mlx.win)
 		close_mlx(&mlx);
 	mlx.img.addr = mlx_get_data_addr(mlx.img.image, &mlx.img.bpp,
 			&mlx.img.ll, &mlx.img.endian);
