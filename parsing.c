@@ -17,7 +17,7 @@ int	is_double(char *str)
 	size_t	i;
 
 	i = 0;
-	while (str[i] == ' ' || str[i] == 't')
+	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
@@ -39,7 +39,7 @@ int	get_sign(char *str)
 
 	i = 0;
 	sign = 1;
-	while (str[i] == ' ' || str[i] == 't')
+	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 	{
@@ -59,7 +59,7 @@ double	convert_double(char *str)
 	i = 0;
 	dev = 1;
 	perc = 0.0;
-	while (str[i] == ' ' || str[i] == 't')
+	while (str[i] == ' ' || str[i] == '\t')
 		i++;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
